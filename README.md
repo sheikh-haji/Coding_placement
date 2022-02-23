@@ -1,6 +1,8 @@
 # Coding_placement
 
 String
-
-1.LONGEST PREFIX SUFFIX
-2.ODD TO EVEN (GREEDY)
+=======================================================
+1.KMP CONCEPT QUESTION
+2.TWO POINTER CONCEPT QUESTION
+3.ODD OR EVEN BRUTE FORCE
+==========================================================
