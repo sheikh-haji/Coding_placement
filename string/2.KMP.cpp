@@ -1,80 +1,59 @@
 KMP ALgorithm-Concept
 1.KMP pattern matching
 https://practice.geeksforgeeks.org/problems/search-pattern0205/1
-
-// Prints occurrences of txt[] in pat[]
-void KMPSearch(char* pat, char* txt)
-{
-    int M = strlen(pat);
-    int N = strlen(txt);
-  
-    // create lps[] that will hold the longest prefix suffix
-    // values for pattern
-    int lps[M];
-  
-    // Preprocess the pattern (calculate lps[] array)
-    computeLPSArray(pat, M, lps);
-  
-    int i = 0; // index for txt[]
-    int j = 0; // index for pat[]
-    while (i < N) {
-        if (pat[j] == txt[i]) {
-            j++;
-            i++;
+ void compute_lps(string pat,vector<int>&lps,int n){
+            int i=0;int j=1;
+            while(i<n and j<n){
+                if(pat[i]==pat[j]){
+                    lps[j]=i+1;
+                    j++;
+                    i++;
+                }
+                else{
+                    if(i==0){
+                        lps[j]=0;
+                        j++;
+                    }
+                    else{
+                        i=lps[i-1];
+                    }
+                }
+            }
+            return;
         }
-  
-        if (j == M) {
-            printf("Found pattern at index %d ", i - j);
-            j = lps[j - 1];
-        }
-  
-        // mismatch after j matches
-        else if (i < N && pat[j] != txt[i]) {
-            // Do not match lps[0..lps[j-1]] characters,
-            // they will match anyway
-            if (j != 0)
-                j = lps[j - 1];
-            else
-                i = i + 1;
-        }
-    }
-}
-  
-// Fills lps[] for given patttern pat[0..M-1]
-void computeLPSArray(char* pat, int M, int* lps)
-{
-    // length of the previous longest prefix suffix
-    int len = 0;
-  
-    lps[0] = 0; // lps[0] is always 0
-  
-    // the loop calculates lps[i] for i = 1 to M-1
-    int i = 1;
-    while (i < M) {
-        if (pat[i] == pat[len]) {
-            len++;
-            lps[i] = len;
-            i++;
-        }
-        else // (pat[i] != pat[len])
+        vector <int> search(string pat, string txt)
         {
-            // This is tricky. Consider the example.
-            // AAACAAAA and i = 7. The idea is similar
-            // to search step.
-            if (len != 0) {
-                len = lps[len - 1];
-  
-                // Also, note that we do not increment
-                // i here
+            //code hee.
+            vector<int> res;
+            int n1=txt.length();
+            int n2=pat.length();
+            vector<int> lps(n2,0);
+            compute_lps(pat,lps,n2);
+            int i=0;
+            int j=0;
+            while(j<n1){
+                if(pat[i]==txt[j]){
+                    i++;
+                    j++;
+                    if(i==n2){
+                        // we found a pattern in this string
+                     res.push_back(j-i+1);
+                     i=lps[i-1];
+                    }
+                }
+                else{
+                    if(i==0){
+                       j++;
+                    }
+                    else{
+                        i=lps[i-1];
+                    }
+                }
+                
             }
-            else // if (len == 0)
-            {
-                lps[i] = 0;
-                i++;
-            }
+            return res;
         }
-    }
-}
+
 2.Longest Prefix Suffix
 https://practice.geeksforgeeks.org/problems/longest-prefix-suffix2527/1
 
