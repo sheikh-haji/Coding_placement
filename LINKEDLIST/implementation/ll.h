@@ -151,7 +151,29 @@ public:
 
 };
 
-
+node* MergeLL(node* head1,node* head2){
+   node* dummy=new node(-1);
+    node* i=dummy;
+    while(head1!=NULL and head2!=NULL){
+	if(head1->data<=head2->data){
+	    i->next=head1;
+	    i=i->next;
+	    head1=head1->next;
+	}
+	else{
+		 i->next=head2;
+	    i=i->next;
+	    head2=head2->next;
+	}
+    }
+    if(head1==NULL){
+      i->next=head2;
+    }
+    if(head2==NULL){
+     i->next=head1;
+    }
+	return dummy->next;
+}
 node* MergeLL(node* head1 , node* head2 ){
 
 	if(head1== NULL){
