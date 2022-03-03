@@ -23,3 +23,12 @@ String
 3.E.LARGEFACTORIAL
 
 ==========================================================================
+
+LINKEDLIST
+
+1.DUMMY NODE CONCEPT
+2.FAST AND SLOW POINTER
+3.FLOYD CYCLE DETECTION
+4. MERGE CONCDEPT
+
+===========================================================================
