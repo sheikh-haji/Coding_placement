@@ -31,4 +31,4 @@ https://leetcode.com/problems/palindrome-linked-list/
             head2=head2->next;head=head->next;
         }
         return true;
-    }
+    }.
