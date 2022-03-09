@@ -174,34 +174,7 @@ node* MergeLL(node* head1,node* head2){
     }
 	return dummy->next;
 }
-node* MergeLL(node* head1 , node* head2 ){
 
-	if(head1== NULL){
-		return head2;
-	}
-
-	if(head2 == NULL){
-		return head1;
-	}
-
-	node* c = NULL;
-
-	if(head1->data < head2->data){
-		c = head1;
-		c->next = MergeLL(head1->next,head2);
-
-	}
-
-	else{
-		c = head2;
-		c->next = MergeLL(head1,head2->next);
-	}
-
-
-	return c;
-
-
-}
 node* mid1(node* head){
 
 	// node* fptr = head; //print 4
